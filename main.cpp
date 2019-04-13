@@ -15,7 +15,7 @@ std::string GetGuess()   {
     FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME BCGame;
     int CurrentTry = BCGame.GetCurrentTry();
     // get a guess from the player
-    std::cout << "Try " << CurrentTry << "Enter your guess: ";
+    std::cout << "Try " << CurrentTry << " Enter your guess: ";
     std::string Guess = "";
     getline(std::cin, Guess);
     return Guess;
