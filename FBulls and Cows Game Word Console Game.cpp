@@ -10,7 +10,7 @@ FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME()
 
 void FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::Reset()   { // this is a member function
     constexpr int32 MAX_TRIES = 8;
-    const FString HIDDEN_WORD = "ant";
+    const FString HIDDEN_WORD = "planet";
     MyMaxTries = MAX_TRIES;
     MyCurrentTry = 1;
     MyHiddenWord = HIDDEN_WORD;
@@ -26,7 +26,8 @@ int32 FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::GetCurrentTry() const { // this pr
 }
 
 bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::IsGameWon() const {
-    return 0;
+
+    return bGameIsWon;
 }
 
 EGuessStatus FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::CheckGuessValidity(FString Guess) const { // receives a valid guess and increments the turn and returns count
@@ -49,19 +50,19 @@ int32 FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::GetHiddenWordLength() const {
     return MyHiddenWord.length();
 }
 
-FBullCowCount FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::SubmitGuess(FString Guess)   {
+FBullCowCount FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::SubmitValidGuess(FString Guess)   { // receives a valid guess, increments the turn and then returns a count
     // increment the turn number
-    MyCurrentTry = MyCurrentTry++;
+    MyCurrentTry++;
 
     // setup a return variable
     FBullCowCount BullCowCount; // this is datatype FBullCowCount with the variable FBullCowCount
 
-    // loop through all letters in the guess
-    int32 HiddenWordLength = MyHiddenWord.length();
-    for (int32 i=0; i < HiddenWordLength; i++) {
+    // loop through all letters in the hidden word
+    int32 WordLength = MyHiddenWord.length(); // assuming same length as guess
+    for (int32 i=0; i < WordLength; i++) {
 
-        // compare the letters against the hidden word
-        for (int32 j=0; j < HiddenWordLength; j++) {
+        // compare the letters against the guess
+        for (int32 j=0; j < WordLength; j++) {
             // if they match
             if (Guess[j] == MyHiddenWord[i])    {
                 if (i == j)  { // increment bulls if they are in the same place
@@ -73,6 +74,14 @@ FBullCowCount FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::SubmitGuess(FString Guess)
             }
         }
     }
+    if (BullCowCount.Bulls == WordLength)   {
+        bGameIsWon = true;
+
+    }
+    else {
+        bGameIsWon = false;
+    }
     return BullCowCount;
 }
+
 

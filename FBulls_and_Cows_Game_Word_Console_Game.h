@@ -7,8 +7,8 @@ using FString = std::string;
 using int32 = int;
 
 struct FBullCowCount { // this is similar to class however all members are public and this is ideal for simple data types
-        int32 Bulls = 0; // a variable with a 32 bit integer datatype initialised to 0
-        int32 Cows = 0; // a variable with a 32 bit integer datatype initialised to 0
+    int32 Bulls = 0; // a variable with a 32 bit integer datatype initialised to 0
+    int32 Cows = 0; // a variable with a 32 bit integer datatype initialised to 0
 };
 
 enum class EGuessStatus    {// the difference between a class enumeration and enumeration is that it fixes global scope issues with repeating definitions
@@ -31,7 +31,7 @@ public: // the public interface
     EGuessStatus CheckGuessValidity(FString) const;
 
     //counts Bulls and Cows and increases the try number assuming valid guess
-    FBullCowCount SubmitGuess(FString);
+    FBullCowCount SubmitValidGuess(FString);
 
 private: // private interface and member variables
     // see constructor for initialisation
@@ -39,4 +39,5 @@ private: // private interface and member variables
     int32 MyMaxTries; // this value is given at compile time (if a value has been equated)
     // provide a method for counting bulls & cows, and incrementing turn number
     FString MyHiddenWord;
+    bool bGameIsWon = false;
 };
