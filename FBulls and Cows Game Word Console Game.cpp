@@ -12,6 +12,8 @@ void FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::Reset()   { // this is a member fun
     constexpr int32 MAX_TRIES = 8;
     MyMaxTries = MAX_TRIES;
     MyCurrentTry = 1;
+    const FString HIDDEN_WORD = "planet";
+    MyHiddenWord = HIDDEN_WORD;
     return;
 }
 
@@ -27,7 +29,18 @@ bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::IsGameWon() const {
     return 0;
 }
 
-bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::CheckGuessValidity(FString) {
+bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::CheckGuessValidity(FString) { // receives a valid guess and increments the turn and returns count
     return false;
+}
+
+BullCowCount FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::SubmitGuess(FString)   {
+    // increment the turn number
+    MyCurrentTry = MyCurrentTry++;
+
+    // setup a return variable
+    BullCowCount BullCowCount; // this is datatype BullCowCount with the variable BullCowCount
+    // loop through all letters in the guess
+        // compare the letters against the hidden word
+    return BullCowCount;
 }
 
