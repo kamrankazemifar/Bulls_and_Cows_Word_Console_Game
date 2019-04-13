@@ -11,8 +11,8 @@ struct FBullCowCount { // this is similar to class however all members are publi
         int32 Cows = 0; // a variable with a 32 bit integer datatype initialised to 0
 };
 
-enum class EWordStatus    {// the difference between a class enumeration and enumeration is
-    OK, // class is used to avoid any global scope issues with repeating definitions such as using OK again in another enum
+enum class EWordStatus    {// the difference between a class enumeration and enumeration is that it fixes global scope issues with repeating definitions
+    OK,
     Not_Isogram,
     Wrong_Length,
     Not_Lowercase
