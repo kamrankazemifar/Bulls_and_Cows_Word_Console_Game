@@ -65,6 +65,7 @@ void PlayGame() {
         std::cout << "Your guess was: " << Guess << std::endl;
         std::cout << std::endl;
     }
+    return;
 }
 
 bool AskToPlayAgain()   {
@@ -73,6 +74,17 @@ bool AskToPlayAgain()   {
     getline (std::cin, Response);
     std::cout << std::endl;
     return (Response [0] == 'y') || (Response [0] == 'Y');
+}
+
+void PrintGameSummary() {
+    FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME BCGame;
+    if (BCGame.IsGameWon())   {
+        std::cout <<"WELL DONE - YOU WIN! " << std::endl;
+    }
+    else    {
+        std::cout <<"BETTER LUCK NEXT TIME! " << std::endl;
+    }
+    return;
 }
 
 int main() { // the entry point of the application

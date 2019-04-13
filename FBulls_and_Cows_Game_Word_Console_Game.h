@@ -40,4 +40,5 @@ private: // private interface and member variables
     // provide a method for counting bulls & cows, and incrementing turn number
     FString MyHiddenWord;
     bool bGameIsWon = false;
+    bool IsIsogram(FString) const;
 };

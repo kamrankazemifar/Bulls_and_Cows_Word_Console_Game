@@ -1,6 +1,8 @@
 // these are declarations as definitions for the header file
 
 #include "FBulls_and_Cows_Game_Word_Console_Game.h" //use quotes for finding elements that have been created, chevrons are used for libraries
+#include <map>
+#define TMap std::map
 
 using int32 = int;
 
@@ -9,7 +11,7 @@ FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME()
 }
 
 void FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::Reset()   { // this is a member function
-    constexpr int32 MAX_TRIES = 8;
+    constexpr int32 MAX_TRIES = 3;
     const FString HIDDEN_WORD = "planet";
     MyMaxTries = MAX_TRIES;
     MyCurrentTry = 1;
@@ -31,7 +33,7 @@ bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::IsGameWon() const {
 }
 
 EGuessStatus FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::CheckGuessValidity(FString Guess) const { // receives a valid guess and increments the turn and returns count
-    if (false)  { // if the guess is not an isogram
+    if (!IsIsogram(Guess))  { // if the guess is not an isogram
         return EGuessStatus::Not_Isogram;
     }
     else if (false) { // if the guess word does not all contain lowercase characters
@@ -84,4 +86,26 @@ FBullCowCount FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::SubmitValidGuess(FString G
     return BullCowCount;
 }
 
+bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::IsIsogram(FString Word) const {
+    // consider 0 and 1 letter strings or words as isograms
+    if (Word.length() <= 1) {
+        return true;
+    }
+    TMap <char, bool> LetterSeen; //setting up the map
+    for (auto Letter : Word) {// this means for all letter of the word, auto is used to allow the compiler to determine the datatype
+        // loop through all the letters of the word
+        Letter = tolower(Letter); // this converts the Letter to lowercase so the program can handle both uppercase and lowercase characters in the string
+        if (LetterSeen[Letter]) { // if the letter is in the map
+            return false; // this is because at this stage there is not isogram present
+        }
+        else    {
+            LetterSeen[Letter] = true; // add the letter to the map as seen
+        }
+        //if the letter is in the map
+        //we do not have an isogram
+        //otherwise
+        // add the letter to the map as seen
+    }
+    return true; // for example in cases where /0 is entered
+}
 
