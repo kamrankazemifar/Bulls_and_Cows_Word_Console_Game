@@ -47,7 +47,7 @@ FBullCowCount FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::SubmitGuess(FString Guess)
         // compare the letters against the hidden word
         for (int32 j=0; j < HiddenWordLength; j++) {
             // if they match
-            if (Guess[i] == MyHiddenWord[i])    {
+            if (Guess[j] == MyHiddenWord[i])    {
                 if (i == j)  { // increment bulls if they are in the same place
                     BullCowCount.Bulls++;
                 }
