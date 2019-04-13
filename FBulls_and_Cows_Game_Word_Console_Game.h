@@ -11,7 +11,8 @@ struct FBullCowCount { // this is similar to class however all members are publi
         int32 Cows = 0; // a variable with a 32 bit integer datatype initialised to 0
 };
 
-enum class EWordStatus    {// the difference between a class enumeration and enumeration is that it fixes global scope issues with repeating definitions
+enum class EGuessStatus    {// the difference between a class enumeration and enumeration is that it fixes global scope issues with repeating definitions
+    Invalid_Status,
     OK,
     Not_Isogram,
     Wrong_Length,
@@ -27,7 +28,7 @@ public: // the public interface
     int32 GetHiddenWordLength() const;
 
     bool IsGameWon() const;
-    EWordStatus CheckGuessValidity(FString) const;
+    EGuessStatus CheckGuessValidity(FString) const;
 
     //counts Bulls and Cows and increases the try number assuming valid guess
     FBullCowCount SubmitGuess(FString);

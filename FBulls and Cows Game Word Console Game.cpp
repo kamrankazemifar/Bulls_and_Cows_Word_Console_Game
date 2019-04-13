@@ -29,8 +29,20 @@ bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::IsGameWon() const {
     return 0;
 }
 
-EWordStatus FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::CheckGuessValidity(FString) const { // receives a valid guess and increments the turn and returns count
-    return EWordStatus::OK; // make an actual error later
+EGuessStatus FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::CheckGuessValidity(FString Guess) const { // receives a valid guess and increments the turn and returns count
+    if (false)  { // if the guess is not an isogram
+        return EGuessStatus::Not_Isogram;
+    }
+    else if (false) { // if the guess word does not all contain lowercase characters
+        return EGuessStatus ::Not_Lowercase;
+    }
+    else if (Guess.length() != GetHiddenWordLength()) { // if the guess word does not meet the required length
+        return EGuessStatus ::Wrong_Length;
+    }
+    else if (false) {
+        return EGuessStatus ::OK;
+    }
+    return EGuessStatus::OK; // make an actual error later
 }
 
 int32 FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::GetHiddenWordLength() const {
