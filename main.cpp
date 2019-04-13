@@ -29,8 +29,7 @@ void PlayGame() {
     std::cout << MaxTries << std::endl;
 
     // loop for the number of turns asking for guesses
-    constexpr int NUMBER_OF_TURNS = 5;
-    for (int count = 1; count <= NUMBER_OF_TURNS; count++)    {
+    for (int count = 1; count <= MaxTries; count++)    {
         std::string Guess = GetGuess();
         //repeat the guess back to the user
         std::cout << "Your guess was: " << Guess << std::endl;
