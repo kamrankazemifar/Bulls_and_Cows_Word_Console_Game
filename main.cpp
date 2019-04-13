@@ -31,9 +31,22 @@ void PlayGame() {
     }
 }
 
-int main() { // the entry point of the application
-    PrintIntro();
-    PlayGame();
+bool AskToPlayAgain()   {
+    cout <<"Do you want to play again? (Y/N)" << endl;
+    string Response = "";
+    getline (cin, Response);
     cout << endl;
+    return (Response [0] == 'y') || (Response [0] == 'Y');
+}
+
+int main() { // the entry point of the application
+    bool bPlayAgain = false;
+    do {
+        PrintIntro();
+        PlayGame();
+        bPlayAgain = AskToPlayAgain();
+        cout << endl;
+    }
+    while (bPlayAgain);
     return 0;
 }
