@@ -13,9 +13,9 @@ using int32 = int;
 
 void PrintIntro()   { // void is where you are not returning a value
     // introducing the game
-    constexpr int32 WORD_LENGTH = 9; // this is for using a value that does not change with datatype integer, the compiler cannot change the value of this variable once the program has run
+    FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME BCGame;
     std::cout << "Welcome to Bulls and Cows, a fun word game." << std::endl; // console output
-    std::cout << "Can you guess the " << WORD_LENGTH << " letter isogram I am thinking of?" << std::endl; // console output calling the constant value stored in the variable
+    std::cout << "Can you guess the " << BCGame.GetHiddenWordLength() << " letter isogram I am thinking of?" << std::endl; // console output calling the constant value stored in the variable
     std::cout << std::endl;
     return;
 }
@@ -35,7 +35,7 @@ void PlayGame() {
     FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME BCGame; // instantiation of a new game (making an instance of a new game)
     int32 MaxTries = BCGame.GetMaxTries();
     BCGame.Reset();
-    std::cout << MaxTries << std::endl;
+    std::cout << "Maximum number of tries: " <<  MaxTries << std::endl;
 
     // loop for the number of turns asking for guesses
     // later chance the for loop to a while loop once we are validating the tries

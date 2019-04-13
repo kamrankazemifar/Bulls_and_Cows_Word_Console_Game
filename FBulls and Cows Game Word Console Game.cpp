@@ -10,9 +10,9 @@ FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME()
 
 void FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::Reset()   { // this is a member function
     constexpr int32 MAX_TRIES = 8;
+    const FString HIDDEN_WORD = "ant";
     MyMaxTries = MAX_TRIES;
     MyCurrentTry = 1;
-    const FString HIDDEN_WORD = "ant";
     MyHiddenWord = HIDDEN_WORD;
     return;
 }
@@ -29,8 +29,12 @@ bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::IsGameWon() const {
     return 0;
 }
 
-bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::CheckGuessValidity(FString) { // receives a valid guess and increments the turn and returns count
+bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::CheckGuessValidity(FString) const { // receives a valid guess and increments the turn and returns count
     return false;
+}
+
+int32 FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::GetHiddenWordLength() const {
+    return MyHiddenWord.length();
 }
 
 FBullCowCount FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::SubmitGuess(FString Guess)   {
