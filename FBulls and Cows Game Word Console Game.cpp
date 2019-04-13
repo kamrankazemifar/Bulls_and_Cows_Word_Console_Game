@@ -29,8 +29,8 @@ bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::IsGameWon() const {
     return 0;
 }
 
-bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::CheckGuessValidity(FString) const { // receives a valid guess and increments the turn and returns count
-    return false;
+EWordStatus FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::CheckGuessValidity(FString) const { // receives a valid guess and increments the turn and returns count
+    return EWordStatus::OK; // make an actual error later
 }
 
 int32 FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::GetHiddenWordLength() const {

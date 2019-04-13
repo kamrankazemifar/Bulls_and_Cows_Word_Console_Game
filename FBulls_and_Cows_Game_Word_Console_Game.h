@@ -11,6 +11,13 @@ struct FBullCowCount { // this is similar to class however all members are publi
         int32 Cows = 0; // a variable with a 32 bit integer datatype initialised to 0
 };
 
+enum class EWordStatus    {// the difference between a class enumeration and enumeration is
+    OK, // class is used to avoid any global scope issues with repeating definitions such as using OK again in another enum
+    Not_Isogram,
+    Wrong_Length,
+    Not_Lowercase
+};
+
 class FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME    {
 public: // the public interface
     FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME(); // constructor
@@ -20,7 +27,7 @@ public: // the public interface
     int32 GetHiddenWordLength() const;
 
     bool IsGameWon() const;
-    bool CheckGuessValidity(FString) const;
+    EWordStatus CheckGuessValidity(FString) const;
 
     //counts Bulls and Cows and increases the try number assuming valid guess
     FBullCowCount SubmitGuess(FString);
