@@ -12,7 +12,7 @@ void FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::Reset()   { // this is a member fun
     constexpr int32 MAX_TRIES = 8;
     MyMaxTries = MAX_TRIES;
     MyCurrentTry = 1;
-    const FString HIDDEN_WORD = "planet";
+    const FString HIDDEN_WORD = "ant";
     MyHiddenWord = HIDDEN_WORD;
     return;
 }
@@ -33,14 +33,30 @@ bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::CheckGuessValidity(FString) { // re
     return false;
 }
 
-FBullCowCount FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::SubmitGuess(FString)   {
+FBullCowCount FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::SubmitGuess(FString Guess)   {
     // increment the turn number
     MyCurrentTry = MyCurrentTry++;
 
     // setup a return variable
     FBullCowCount BullCowCount; // this is datatype FBullCowCount with the variable FBullCowCount
+
     // loop through all letters in the guess
+    int32 HiddenWordLength = MyHiddenWord.length();
+    for (int32 i=0; i < HiddenWordLength; i++) {
+
         // compare the letters against the hidden word
+        for (int32 j=0; j < HiddenWordLength; j++) {
+            // if they match
+            if (Guess[i] == MyHiddenWord[i])    {
+                if (i == j)  { // increment bulls if they are in the same place
+                    BullCowCount.Bulls++;
+                }
+                else {
+                BullCowCount.Cows++; // increment cows
+                }
+            }
+        }
+    }
     return BullCowCount;
 }
 
