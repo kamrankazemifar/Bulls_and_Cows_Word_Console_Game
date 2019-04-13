@@ -1,22 +1,20 @@
 #include <iostream>
 #include <string>
 
-using namespace std; // this uses the standard library which contains definitions such as cin, cout and endl
-
 void PrintIntro()   { // void is where you are not returning a value
     // introducing the game
     constexpr int WORD_LENGTH = 9; // this is for using a value that does not change with datatype integer, the compiler cannot change the value of this variable once the program has run
-    cout << "Welcome to Bulls and Cows, a fun word game." << endl; // console output
-    cout << "Can you guess the " << WORD_LENGTH << " letter isogram I am thinking of?" << endl; // console output calling the constant value stored in the variable
-    cout << endl;
+    std::cout << "Welcome to Bulls and Cows, a fun word game." << std::endl; // console output
+    std::cout << "Can you guess the " << WORD_LENGTH << " letter isogram I am thinking of?" << std::endl; // console output calling the constant value stored in the variable
+    std::cout << std::endl;
     return;
 }
 
-string GetGuess()   {
+std::string GetGuess()   {
     // get a guess from the player
-    cout << "Enter your guess: ";
-    string Guess = "";
-    getline(cin, Guess);
+    std::cout << "Enter your guess: ";
+    std::string Guess = "";
+    getline(std::cin, Guess);
     return Guess;
 }
 
@@ -24,18 +22,18 @@ void PlayGame() {
     // loop for the number of turns asking for guesses
     constexpr int NUMBER_OF_TURNS = 5;
     for (int count = 1; count <= NUMBER_OF_TURNS; count++)    {
-        string Guess = GetGuess();
+        std::string Guess = GetGuess();
         //repeat the guess back to the user
-        cout << "Your guess was: " << Guess << endl;
-        cout << endl;
+        std::cout << "Your guess was: " << Guess << std::endl;
+        std::cout << std::endl;
     }
 }
 
 bool AskToPlayAgain()   {
-    cout <<"Do you want to play again? (Y/N)" << endl;
-    string Response = "";
-    getline (cin, Response);
-    cout << endl;
+    std::cout <<"Do you want to play again? (Y/N)" << std::endl;
+    std::string Response = "";
+    getline (std::cin, Response);
+    std::cout << std::endl;
     return (Response [0] == 'y') || (Response [0] == 'Y');
 }
 
@@ -45,7 +43,7 @@ int main() { // the entry point of the application
         PrintIntro();
         PlayGame();
         bPlayAgain = AskToPlayAgain();
-        cout << endl;
+        std::cout << std::endl;
     }
     while (bPlayAgain);
     return 0;
