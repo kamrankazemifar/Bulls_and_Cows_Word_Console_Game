@@ -6,7 +6,7 @@
 using FString = std::string;
 using int32 = int;
 
-struct BullCowCount { // this is similar to class however all members are public and this is ideal for simple data types
+struct FBullCowCount { // this is similar to class however all members are public and this is ideal for simple data types
         int32 Bulls = 0; // a variable with a 32 bit integer datatype initialised to 0
         int32 Cows = 0; // a variable with a 32 bit integer datatype initialised to 0
 };
@@ -21,7 +21,7 @@ public: // the public interface
     bool CheckGuessValidity(FString);
 
     //counts Bulls and Cows and increases the try number assuming valid guess
-    BullCowCount SubmitGuess(FString);
+    FBullCowCount SubmitGuess(FString);
 
 private: // private interface and member variables
     // see constructor for initialisation

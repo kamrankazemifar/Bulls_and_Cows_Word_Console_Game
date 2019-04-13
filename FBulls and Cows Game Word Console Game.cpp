@@ -33,12 +33,12 @@ bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::CheckGuessValidity(FString) { // re
     return false;
 }
 
-BullCowCount FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::SubmitGuess(FString)   {
+FBullCowCount FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::SubmitGuess(FString)   {
     // increment the turn number
     MyCurrentTry = MyCurrentTry++;
 
     // setup a return variable
-    BullCowCount BullCowCount; // this is datatype BullCowCount with the variable BullCowCount
+    FBullCowCount BullCowCount; // this is datatype FBullCowCount with the variable FBullCowCount
     // loop through all letters in the guess
         // compare the letters against the hidden word
     return BullCowCount;
