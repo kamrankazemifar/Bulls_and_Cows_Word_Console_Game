@@ -5,11 +5,15 @@ void FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::Reset()   {
 }
 
 int FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::GetMaxTries() {
-    return 0;
+    return MyMaxTries;
+}
+
+int FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::GetCurrentTry() {
+    return MyCurrentTry;
 }
 
 bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::IsGameWon() {
-    return false;
+    return 0;
 }
 
 bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::CheckGuessValidity(std::string) {
