@@ -6,21 +6,20 @@
 
 using int32 = int;
 
-FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME()    {
+FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME()    { //default constructor
     Reset();
 }
 
 void FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::Reset()   { // this is a member function
-    constexpr int32 MAX_TRIES = 3;
     const FString HIDDEN_WORD = "planet";
-    MyMaxTries = MAX_TRIES;
     MyCurrentTry = 1;
     MyHiddenWord = HIDDEN_WORD;
     return;
 }
 
 int32 FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::GetMaxTries() const { // this provides the run time value
-    return MyMaxTries;
+    TMap<int32, int32> WordLengthToMaxTries { {3, 4}, {4, 7}, {5, 10}, {6, 16}, {7, 20} };
+    return WordLengthToMaxTries[MyHiddenWord.length()];
 }
 
 int32 FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::GetCurrentTry() const { // this provides the run time value
@@ -36,7 +35,7 @@ EGuessStatus FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::CheckGuessValidity(FString 
     if (!IsIsogram(Guess))  { // if the guess is not an isogram
         return EGuessStatus::Not_Isogram;
     }
-    else if (false) { // if the guess word does not all contain lowercase characters
+    else if (!IsLowercase(Guess)) { // if the guess word does not all contain lowercase characters
         return EGuessStatus ::Not_Lowercase;
     }
     else if (Guess.length() != GetHiddenWordLength()) { // if the guess word does not meet the required length
@@ -109,3 +108,12 @@ bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::IsIsogram(FString Word) const {
     return true; // for example in cases where /0 is entered
 }
 
+bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::IsLowercase(FString Word) const { // a parameter is what is being defines, however an argument is what is being called
+
+    for (auto Letter : Word)    {
+        if (!islower(Letter))   { // if not a lowercase letter
+            return false; // return false
+        }
+    }
+    return false;
+}

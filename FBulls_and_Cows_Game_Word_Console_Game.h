@@ -36,9 +36,9 @@ public: // the public interface
 private: // private interface and member variables
     // see constructor for initialisation
     int32 MyCurrentTry; // this value is given at compile time (if a value has been equated)
-    int32 MyMaxTries; // this value is given at compile time (if a value has been equated)
     // provide a method for counting bulls & cows, and incrementing turn number
     FString MyHiddenWord;
     bool bGameIsWon = false;
     bool IsIsogram(FString) const;
+    bool IsLowercase(FString) const;
 };
