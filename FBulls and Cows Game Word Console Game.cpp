@@ -14,8 +14,9 @@ FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME()
 
 void FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::Reset()   { // this is a member function
     const FString HIDDEN_WORD = "planet"; // this must be an isogram otherwise the difficulty of the game becomes a lot harder
-    MyCurrentTry = 1;
     MyHiddenWord = HIDDEN_WORD;
+    MyCurrentTry = 1;
+    bGameIsWon = false;
     return;
 }
 
@@ -33,6 +34,10 @@ bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::IsGameWon() const {
     return bGameIsWon;
 }
 
+int32 FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::GetHiddenWordLength() const {
+    return MyHiddenWord.length();
+}
+
 EGuessStatus FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::CheckGuessValidity(FString Guess) const { // receives a valid guess and increments the turn and returns count
     if (!IsIsogram(Guess))  { // if the guess is not an isogram
         return EGuessStatus::Not_Isogram;
@@ -43,27 +48,19 @@ EGuessStatus FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::CheckGuessValidity(FString 
     else if (Guess.length() != GetHiddenWordLength()) { // if the guess word does not meet the required length
         return EGuessStatus ::Wrong_Length;
     }
-    else if (false) {
+    else {
         return EGuessStatus ::OK;
     }
-    return EGuessStatus::OK; // make an actual error later
-}
-
-int32 FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::GetHiddenWordLength() const {
-    return MyHiddenWord.length();
 }
 
 FBullCowCount FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::SubmitValidGuess(FString Guess)   { // receives a valid guess, increments the turn and then returns a count
     // increment the turn number
     MyCurrentTry++;
-
     // setup a return variable
     FBullCowCount BullCowCount; // this is datatype FBullCowCount with the variable FBullCowCount
-
     // loop through all letters in the hidden word
     int32 WordLength = MyHiddenWord.length(); // assuming same length as guess
     for (int32 i=0; i < WordLength; i++) {
-
         // compare the letters against the guess
         for (int32 j=0; j < WordLength; j++) {
             // if they match
@@ -79,7 +76,6 @@ FBullCowCount FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::SubmitValidGuess(FString G
     }
     if (BullCowCount.Bulls == WordLength)   {
         bGameIsWon = true;
-
     }
     else {
         bGameIsWon = false;
@@ -117,5 +113,5 @@ bool FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::IsLowercase(FString Word) const { /
             return false; // return false
         }
     }
-    return false;
+    return true;
 }

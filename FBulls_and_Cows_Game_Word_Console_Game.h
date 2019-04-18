@@ -7,6 +7,7 @@
 #pragma once // this makes sure elements imported are only imported once
 #include <string>
 
+// to make syntax Unreal friendly
 using FString = std::string;
 using int32 = int;
 
@@ -26,14 +27,13 @@ enum class EGuessStatus    {// the difference between a class enumeration and en
 class FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME    {
 public: // the public interface
     FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME(); // constructor
-    void Reset(); // make a much more return value
     int32 GetMaxTries() const; // this prevents any possible chance the value can be changed
     int32 GetCurrentTry() const;
     int32 GetHiddenWordLength() const;
-
     bool IsGameWon() const;
     EGuessStatus CheckGuessValidity(FString) const;
 
+    void Reset(); // make a much more return value
     //counts Bulls and Cows and increases the try number assuming valid guess
     FBullCowCount SubmitValidGuess(FString);
 

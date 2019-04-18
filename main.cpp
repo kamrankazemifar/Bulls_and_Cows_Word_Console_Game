@@ -28,13 +28,13 @@ void PrintIntro()   { // void is where you are not returning a value
 }
 
 FText GetValidGuess()   {
+    FText Guess = "";
     EGuessStatus Status = EGuessStatus::Invalid_Status; // initialising invalid status so that the while loop has access to it
     do  {
         FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME BCGame;
         int32 CurrentTry = BCGame.GetCurrentTry();
         // get a guess from the player
         std::cout << "Try " << CurrentTry << "  Enter your guess: " << std::endl;
-        FText Guess = "";
         getline(std::cin, Guess);
         //check the status and give feedback
         Status = BCGame.CheckGuessValidity(Guess);
@@ -50,31 +50,11 @@ FText GetValidGuess()   {
                 std::cout << "Please enter a word that contains all lowercase characters." << std::endl;
                 break;
             default: // assume the guess is valid
-                return Guess;
+                break;
         }
         std::cout << std::endl;
     } while (Status != EGuessStatus::OK); // keep looping until there is a valid input/no errors fro the user input
-}
-
-// plays a single game to completion
-void PlayGame() {
-    FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME BCGame; // instantiation of a new game (making an instance of a new game)
-    int32 MaxTries = BCGame.GetMaxTries();
-    BCGame.Reset();
-    std::cout << "Maximum number of tries: " <<  MaxTries << std::endl;
-    // loop for the number of turns asking for guesses while the game is not won
-    // is not won and there are still tries remaining
-    while(!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries)    {
-        FText Guess = GetValidGuess(); // make the loop check for valid guesses
-        FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
-        // output the number of bulls and cows
-        std::cout << "Bulls = " << BullCowCount.Bulls << std::endl;
-        std::cout << "Cows = " << BullCowCount.Cows << std::endl;
-        //repeat the guess back to the user
-        std::cout << "Your guess was: " << Guess << std::endl;
-        std::cout << std::endl;
-    }
-    return;
+    return Guess;
 }
 
 bool AskToPlayAgain()   {
@@ -96,6 +76,28 @@ void PrintGameSummary() {
     return;
 }
 
+// plays a single game to completion
+void PlayGame() {
+    FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME BCGame; // instantiation of a new game (making an instance of a new game)
+    int32 MaxTries = BCGame.GetMaxTries();
+    BCGame.Reset();
+    std::cout << "Maximum number of tries: " <<  MaxTries << std::endl;
+    // loop for the number of turns asking for guesses while the game is not won
+    // is not won and there are still tries remaining
+    while(!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries)    {
+        FText Guess = GetValidGuess(); // make the loop check for valid guesses
+        FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
+        // output the number of bulls and cows
+        std::cout << "Bulls = " << BullCowCount.Bulls << std::endl;
+        std::cout << "Cows = " << BullCowCount.Cows << std::endl;
+        //repeat the guess back to the user
+        std::cout << "Your guess was: " << Guess << std::endl;
+        std::cout << std::endl;
+    }
+    PrintGameSummary;
+    return;
+}
+
 int main() { // the entry point of the application
     bool bPlayAgain = false;
     do {
@@ -107,3 +109,4 @@ int main() { // the entry point of the application
     while (bPlayAgain);
     return 0;
 }
+
