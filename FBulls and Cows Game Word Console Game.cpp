@@ -1,8 +1,10 @@
 // these are declarations as definitions for the header file
 
+#pragma once
+
 #include "FBulls_and_Cows_Game_Word_Console_Game.h" //use quotes for finding elements that have been created, chevrons are used for libraries
 #include <map>
-#define TMap std::map
+#define TMap std::map // to make the code more unreal friendly
 
 using int32 = int;
 
@@ -11,7 +13,7 @@ FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME()
 }
 
 void FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME::Reset()   { // this is a member function
-    const FString HIDDEN_WORD = "planet";
+    const FString HIDDEN_WORD = "planet"; // this must be an isogram otherwise the difficulty of the game becomes a lot harder
     MyCurrentTry = 1;
     MyHiddenWord = HIDDEN_WORD;
     return;

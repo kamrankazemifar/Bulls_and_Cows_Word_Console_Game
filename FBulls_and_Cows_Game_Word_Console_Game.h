@@ -1,4 +1,8 @@
+// The game logic (no view code or direct user interaction)
+// The game is a simple guess the word game based on Mastermind
+
 //this file contains class functions
+
 
 #pragma once // this makes sure elements imported are only imported once
 #include <string>

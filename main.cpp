@@ -3,13 +3,21 @@
  * FBulls_and_Cows_Game_Word_Console_Game class.
  */
 
+#pragma once
+
 #include <iostream>
 #include <string>
 #include "FBulls_and_Cows_Game_Word_Console_Game.h"
 
+
+// to make syntax Unreal friendly
 using FText = std::string; // FText is used to improve user interaction, hence why it is being used in main.cpp
 using int32 = int;
 
+FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME BCGame; // instantiate a new game, which we re-use across plays
+
+// function prototypes as outside a class
+// introduce the game
 void PrintIntro()   { // void is where you are not returning a value
     // introducing the game
     FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME BCGame;
@@ -48,6 +56,7 @@ FText GetValidGuess()   {
     } while (Status != EGuessStatus::OK); // keep looping until there is a valid input/no errors fro the user input
 }
 
+// plays a single game to completion
 void PlayGame() {
     FBULLS_AND_COWS_GAME_WORD_CONSOLE_GAME BCGame; // instantiation of a new game (making an instance of a new game)
     int32 MaxTries = BCGame.GetMaxTries();
